@@ -9,7 +9,7 @@ import torch
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 # Carregar modelo YOLO
-DIR = 'runs/detect/model-v5/weights/best.pt'  # Defina o caminho do modelo YOLO
+DIR = 'best.pt'  # Defina o caminho do modelo YOLO
 model = YOLO(DIR).to(device)
 
 def apply_inpaint_on_detections(img, results, inpaint_radius=7):
