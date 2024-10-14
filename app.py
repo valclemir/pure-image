@@ -4,12 +4,13 @@ import cv2
 from PIL import Image
 from ultralytics import YOLO
 import torch
+import os
 
 # Definir dispositivo para o modelo YOLO
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 # Carregar modelo YOLO
-DIR = 'best.pt'  # Defina o caminho do modelo YOLO
+DIR = os.getcwd() + "/pure-image/best.pt"  # Defina o caminho do modelo YOLO
 model = YOLO(DIR).to(device)
 
 def apply_inpaint_on_detections(img, results, inpaint_radius=7):
@@ -65,7 +66,7 @@ if uploaded_file is not None:
 
     # Sliders para os parâmetros
     #inpaint_radius = st.slider("Raio para Inpainting", 1, 15, 7)
-    inpaint_radius = 7
+    inpaint_radius = 0.5
     brightness = st.slider("Ajuste de Brilho", 0, 200, 100)
     contrast = st.slider("Ajuste de Contraste", 50, 200, 105)
     sharpness_intensity = st.slider("Intensidade de Nitidez", 0.1, 2.0, 0.5)
